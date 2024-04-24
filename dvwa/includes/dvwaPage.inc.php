@@ -24,7 +24,7 @@ if( !isset( $_COOKIE[ 'security' ] ) || !in_array( $_COOKIE[ 'security' ], $secu
 	if( in_array( $_DVWA[ 'default_security_level' ], $security_levels) ) {
 		dvwaSecurityLevelSet( $_DVWA[ 'default_security_level' ] );
 	} else {
-		dvwaSecurityLevelSet( 'impossible' );
+		dvwaSecurityLevelSet( 'low' );
 	}
 	// If the cookie wasn't set then the session flags need updating.
 	dvwa_start_session();
@@ -156,7 +156,7 @@ function dvwaCurrentUser() {
 
 function &dvwaPageNewGrab() {
 	$returnArray = array(
-		'title'           => 'Damn Vulnerable Web Application (DVWA)',
+		'title'           => 'სისტემაში',
 		'title_separator' => ' :: ',
 		'body'            => '',
 		'page_id'         => '',
@@ -182,7 +182,7 @@ function dvwaSecurityLevelGet() {
 	}
 
 	// Worse case, set the level to impossible.
-	return 'impossible';
+	return 'low';
 }
 
 
@@ -254,47 +254,47 @@ function dvwaHtmlEcho( $pPage ) {
 
 	$menuBlocks[ 'home' ] = array();
 	if( dvwaIsLoggedIn() ) {
-		$menuBlocks[ 'home' ][] = array( 'id' => 'home', 'name' => 'Home', 'url' => '.' );
-		$menuBlocks[ 'home' ][] = array( 'id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php' );
-		$menuBlocks[ 'home' ][] = array( 'id' => 'setup', 'name' => 'Setup / Reset DB', 'url' => 'setup.php' );
+		$menuBlocks[ 'home' ][] = array( 'id' => 'home', 'name' => 'მთავარი', 'url' => '.' );
+		// $menuBlocks[ 'home' ][] = array( 'id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php' );
+		$menuBlocks[ 'home' ][] = array( 'id' => 'setup', 'name' => 'დარესეტება', 'url' => 'setup.php' );
 	}
 	else {
-		$menuBlocks[ 'home' ][] = array( 'id' => 'setup', 'name' => 'Setup DVWA', 'url' => 'setup.php' );
-		$menuBlocks[ 'home' ][] = array( 'id' => 'instructions', 'name' => 'Instructions', 'url' => 'instructions.php' );
+		$menuBlocks[ 'home' ][] = array( 'id' => 'setup', 'name' => 'დასეტაპება', 'url' => 'setup.php' );
+		$menuBlocks[ 'home' ][] = array( 'id' => 'instructions', 'name' => 'ინსტრუქცია', 'url' => 'instructions.php' );
 	}
 
 	if( dvwaIsLoggedIn() ) {
 		$menuBlocks[ 'vulnerabilities' ] = array();
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'brute', 'name' => 'Brute Force', 'url' => 'vulnerabilities/brute/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'exec', 'name' => 'Command Injection', 'url' => 'vulnerabilities/exec/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'brute', 'name' => 'Brute Force', 'url' => 'vulnerabilities/brute/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'exec', 'name' => 'ინტერნეტ კავშირის შემოწმება', 'url' => 'vulnerabilities/exec/' );
 		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'csrf', 'name' => 'CSRF', 'url' => 'vulnerabilities/csrf/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'fi', 'name' => 'File Inclusion', 'url' => 'vulnerabilities/fi/.?page=include.php' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'upload', 'name' => 'File Upload', 'url' => 'vulnerabilities/upload/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'captcha', 'name' => 'Insecure CAPTCHA', 'url' => 'vulnerabilities/captcha/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'sqli', 'name' => 'SQL Injection', 'url' => 'vulnerabilities/sqli/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'sqli_blind', 'name' => 'SQL Injection (Blind)', 'url' => 'vulnerabilities/sqli_blind/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'weak_id', 'name' => 'Weak Session IDs', 'url' => 'vulnerabilities/weak_id/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'xss_d', 'name' => 'XSS (DOM)', 'url' => 'vulnerabilities/xss_d/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'xss_r', 'name' => 'XSS (Reflected)', 'url' => 'vulnerabilities/xss_r/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'xss_s', 'name' => 'XSS (Stored)', 'url' => 'vulnerabilities/xss_s/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'csp', 'name' => 'CSP Bypass', 'url' => 'vulnerabilities/csp/' );
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'javascript', 'name' => 'JavaScript', 'url' => 'vulnerabilities/javascript/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'fi', 'name' => 'ფაილების ძიება', 'url' => 'vulnerabilities/fi/.?page=include.php' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'upload', 'name' => 'File Upload', 'url' => 'vulnerabilities/upload/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'captcha', 'name' => 'Insecure CAPTCHA', 'url' => 'vulnerabilities/captcha/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'sqli', 'name' => 'მომხმარებლის ძებნა', 'url' => 'vulnerabilities/sqli/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'sqli_blind', 'name' => 'SQL Injection (Blind)', 'url' => 'vulnerabilities/sqli_blind/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'weak_id', 'name' => 'Weak Session IDs', 'url' => 'vulnerabilities/weak_id/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'xss_d', 'name' => 'XSS (DOM)', 'url' => 'vulnerabilities/xss_d/' );
+		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'xss_r', 'name' => 'მისალმება', 'url' => 'vulnerabilities/xss_r/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'xss_s', 'name' => 'XSS (Stored)', 'url' => 'vulnerabilities/xss_s/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'csp', 'name' => 'CSP Bypass', 'url' => 'vulnerabilities/csp/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'javascript', 'name' => 'JavaScript', 'url' => 'vulnerabilities/javascript/' );
 		if (dvwaCurrentUser() == "admin") {
-			$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'authbypass', 'name' => 'Authorisation Bypass', 'url' => 'vulnerabilities/authbypass/' );
+			// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'authbypass', 'name' => 'Authorisation Bypass', 'url' => 'vulnerabilities/authbypass/' );
 		}
-		$menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'open_redirect', 'name' => 'Open HTTP Redirect', 'url' => 'vulnerabilities/open_redirect/' );
+		// $menuBlocks[ 'vulnerabilities' ][] = array( 'id' => 'open_redirect', 'name' => 'Open HTTP Redirect', 'url' => 'vulnerabilities/open_redirect/' );
 	}
 
 	$menuBlocks[ 'meta' ] = array();
 	if( dvwaIsLoggedIn() ) {
-		$menuBlocks[ 'meta' ][] = array( 'id' => 'security', 'name' => 'DVWA Security', 'url' => 'security.php' );
-		$menuBlocks[ 'meta' ][] = array( 'id' => 'phpinfo', 'name' => 'PHP Info', 'url' => 'phpinfo.php' );
+		$menuBlocks[ 'meta' ][] = array( 'id' => 'security', 'name' => 'პარამეტრები', 'url' => 'security.php' );
+		// $menuBlocks[ 'meta' ][] = array( 'id' => 'phpinfo', 'name' => 'PHP Info', 'url' => 'phpinfo.php' );
 	}
-	$menuBlocks[ 'meta' ][] = array( 'id' => 'about', 'name' => 'About', 'url' => 'about.php' );
+	// $menuBlocks[ 'meta' ][] = array( 'id' => 'about', 'name' => 'About', 'url' => 'about.php' );
 
 	if( dvwaIsLoggedIn() ) {
 		$menuBlocks[ 'logout' ] = array();
-		$menuBlocks[ 'logout' ][] = array( 'id' => 'logout', 'name' => 'Logout', 'url' => 'logout.php' );
+		$menuBlocks[ 'logout' ][] = array( 'id' => 'logout', 'name' => 'გასვლა', 'url' => 'logout.php' );
 	}
 
 	$menuHtml = '';
@@ -327,10 +327,10 @@ function dvwaHtmlEcho( $pPage ) {
 	}
 	// -- END (security cookie)
 
-	$userInfoHtml = '<em>Username:</em> ' . ( dvwaCurrentUser() );
+	$userInfoHtml = '<em>მომხმარებელი:</em> ' . ( dvwaCurrentUser() );
 	$securityLevelHtml = "<em>Security Level:</em> {$securityLevelHtml}";
-	$localeHtml = '<em>Locale:</em> ' . ( dvwaLocaleGet() );
-	$sqliDbHtml = '<em>SQLi DB:</em> ' . ( dvwaSQLiDBGet() );
+	$localeHtml = '<em>ენა:</em> ka';
+	$sqliDbHtml = '<em>ბაზა:</em> ' . ( dvwaSQLiDBGet() );
 	
 
 	$messagesHtml = messagesPopAllToHtml();
@@ -340,7 +340,8 @@ function dvwaHtmlEcho( $pPage ) {
 
 	$systemInfoHtml = "";
 	if( dvwaIsLoggedIn() ) 
-		$systemInfoHtml = "<div align=\"left\">{$userInfoHtml}<br />{$securityLevelHtml}<br />{$localeHtml}<br />{$sqliDbHtml}</div>";
+		// $systemInfoHtml = "<div align=\"left\">{$userInfoHtml}<br />{$securityLevelHtml}<br />{$localeHtml}<br />{$sqliDbHtml}</div>";
+		$systemInfoHtml = "<div align=\"left\">{$userInfoHtml}<br />{$localeHtml}<br />{$sqliDbHtml}</div>";
 	if( $pPage[ 'source_button' ] ) {
 		$systemInfoHtml = dvwaButtonSourceHtmlGet( $pPage[ 'source_button' ] ) . " $systemInfoHtml";
 	}
@@ -362,9 +363,9 @@ function dvwaHtmlEcho( $pPage ) {
 
 		<title>{$pPage[ 'title' ]}</title>
 
-		<link rel=\"stylesheet\" type=\"text/css\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/css/main.css\" />
+		<link rel=\"stylesheet\" type=\"text/css\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/css/custom.css\" />
 
-		<link rel=\"icon\" type=\"\image/ico\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "favicon.ico\" />
+		<link rel=\"icon\" type=\"\image/ico\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/hts_logo.jpeg\" />
 
 		<script type=\"text/javascript\" src=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/js/dvwaPage.js\"></script>
 
@@ -375,7 +376,7 @@ function dvwaHtmlEcho( $pPage ) {
 
 			<div id=\"header\">
 
-				<img src=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/logo.png\" alt=\"Damn Vulnerable Web Application\" />
+				<img src=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/hts_logo.jpeg\" style=\"width: 220px; height: 200px;\" />
 
 			</div>
 
@@ -400,13 +401,6 @@ function dvwaHtmlEcho( $pPage ) {
 
 			<div id=\"system_info\">
 				{$systemInfoHtml}
-			</div>
-
-			<div id=\"footer\">
-
-				<p>Damn Vulnerable Web Application (DVWA)</p>
-				<script src='" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/js/add_event_listeners.js'></script>
-
 			</div>
 
 		</div>
@@ -435,7 +429,7 @@ function dvwaHelpHtmlEcho( $pPage ) {
 
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/css/help.css\" />
 
-		<link rel=\"icon\" type=\"\image/ico\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "favicon.ico\" />
+		<link rel=\"icon\" type=\"\image/ico\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/hts_logo.jpeg\" />
 
 	</head>
 
@@ -471,7 +465,7 @@ function dvwaSourceHtmlEcho( $pPage ) {
 
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/css/source.css\" />
 
-		<link rel=\"icon\" type=\"\image/ico\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "favicon.ico\" />
+		<link rel=\"icon\" type=\"\image/ico\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/hts_logo.jpeg\" />
 
 	</head>
 
@@ -502,13 +496,15 @@ function dvwaExternalLinkUrlGet( $pLink,$text=null ) {
 function dvwaButtonHelpHtmlGet( $pId ) {
 	$security = dvwaSecurityLevelGet();
 	$locale = dvwaLocaleGet();
-	return "<input type=\"button\" value=\"View Help\" class=\"popup_button\" id='help_button' data-help-url='" . DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/view_help.php?id={$pId}&security={$security}&locale={$locale}' )\">";
+	// return "<input type=\"button\" value=\"View Help\" class=\"popup_button\" id='help_button' data-help-url='" . DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/view_help.php?id={$pId}&security={$security}&locale={$locale}' )\">";
+	return "";
 }
 
 
 function dvwaButtonSourceHtmlGet( $pId ) {
 	$security = dvwaSecurityLevelGet();
-	return "<input type=\"button\" value=\"View Source\" class=\"popup_button\" id='source_button' data-source-url='" . DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/view_source.php?id={$pId}&security={$security}' )\">";
+	// return "<input type=\"button\" value=\"View Source\" class=\"popup_button\" id='source_button' data-source-url='" . DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/view_source.php?id={$pId}&security={$security}' )\">";
+	return "";
 }
 
 

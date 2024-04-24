@@ -4,7 +4,7 @@ pipeline {
         FILE_TYPES="php"
         ZIP_FILE_NAME="vc-${FILE_TYPES}.zip"
         ZIP_PLSQL_OUTFILE="${WORKSPACE}/${ZIP_FILE_NAME}" 
-        FILES_TO_ZIP_PLSQL="**/**.${FILE_TYPES}"
+        FILES_TO_ZIP_PLSQL="vulnerabilities/**.${FILE_TYPES}"
     }
 
     stages {

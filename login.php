@@ -39,13 +39,13 @@ if( isset( $_POST[ 'Login' ] ) ) {
 	$query  = "SELECT * FROM `users` WHERE user='$user' AND password='$pass';";
 	$result = @mysqli_query($GLOBALS["___mysqli_ston"],  $query ) or die( '<pre>' . ((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . '.<br />Try <a href="setup.php">installing again</a>.</pre>' );
 	if( $result && mysqli_num_rows( $result ) == 1 ) {    // Login Successful...
-		dvwaMessagePush( "You have logged in as '{$user}'" );
+		dvwaMessagePush( "თქვენ შემოსული ხართ როგორც '{$user}'" );
 		dvwaLogin( $user );
 		dvwaRedirect( DVWA_WEB_PAGE_TO_ROOT . 'index.php' );
 	}
 
 	// Login failed
-	dvwaMessagePush( 'Login failed' );
+	dvwaMessagePush( ' არასწორი მომხმარებელი ' );
 	dvwaRedirect( 'login.php' );
 }
 
@@ -66,7 +66,7 @@ echo "<!DOCTYPE html>
 
 		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />
 
-		<title>Login :: Damn Vulnerable Web Application (DVWA)</title>
+		<title>შესვლა :: სისტემაში</title>
 
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/css/login.css\" />
 
@@ -80,7 +80,7 @@ echo "<!DOCTYPE html>
 
 	<br />
 
-	<p><img src=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/login_logo.png\" /></p>
+	<p><img src=\"" . DVWA_WEB_PAGE_TO_ROOT . "dvwa/images/hts_logo.jpeg\" style=\"width: 220px; height: 200px;\"  /></p>
 
 	<br />
 
@@ -92,14 +92,14 @@ echo "<!DOCTYPE html>
 
 	<fieldset>
 
-			<label for=\"user\">Username</label> <input type=\"text\" class=\"loginInput\" size=\"20\" name=\"username\"><br />
+			<label for=\"user\">მომხმარებელი</label> <input type=\"text\" class=\"loginInput\" size=\"20\" name=\"username\"><br />
 
 
-			<label for=\"pass\">Password</label> <input type=\"password\" class=\"loginInput\" AUTOCOMPLETE=\"off\" size=\"20\" name=\"password\"><br />
+			<label for=\"pass\">პაროლი</label> <input type=\"password\" class=\"loginInput\" AUTOCOMPLETE=\"off\" size=\"20\" name=\"password\"><br />
 
 			<br />
 
-			<p class=\"submit\"><input type=\"submit\" value=\"Login\" name=\"Login\"></p>
+			<p class=\"submit\"><input type=\"submit\" value=\"შესვლა\" name=\"Login\"></p>
 
 	</fieldset>
 
@@ -121,12 +121,6 @@ echo "<!DOCTYPE html>
 	<br />
 
 	</div > <!--<div id=\"content\">-->
-
-	<div id=\"footer\">
-
-	<p>" . dvwaExternalLinkUrlGet( 'https://github.com/digininja/DVWA/', 'Damn Vulnerable Web Application (DVWA)' ) . "</p>
-
-	</div> <!--<div id=\"footer\"> -->
 
 	</div> <!--<div id=\"wrapper\"> -->
 
