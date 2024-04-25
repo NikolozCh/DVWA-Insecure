@@ -6,7 +6,7 @@ require_once DVWA_WEB_PAGE_TO_ROOT . 'dvwa/includes/dvwaPage.inc.php';
 dvwaPageStartup( array( 'authenticated' ) );
 
 $page = dvwaPageNewGrab();
-$page[ 'title' ]   = 'Vulnerability: SQL Injection' . $page[ 'title_separator' ].$page[ 'title' ];
+$page[ 'title' ]   = 'სერვისი: მომხმარებლის ძებნა' . $page[ 'title_separator' ].$page[ 'title' ];
 $page[ 'page_id' ] = 'sqli';
 $page[ 'help_button' ]   = 'sqli';
 $page[ 'source_button' ] = 'sqli';
@@ -35,7 +35,7 @@ require_once DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/sqli/source/{$vulnerabilit
 
 $page[ 'body' ] .= "
 <div class=\"body_padded\">
-	<h1>Vulnerability: SQL Injection</h1>
+	<h1>სერვისი: მომხმარებლის ძებნა</h1>
 
 	<div class=\"vulnerable_code_area\">";
 if( $vulnerabilityFile == 'high.php' ) {
@@ -45,7 +45,7 @@ else {
 	$page[ 'body' ] .= "
 		<form action=\"#\" method=\"{$method}\">
 			<p>
-				User ID:";
+				მომხმარებლის ID:";
 	if( $vulnerabilityFile == 'medium.php' ) {
 		$page[ 'body' ] .= "\n				<select name=\"id\">";
 
@@ -55,7 +55,7 @@ else {
 	else
 		$page[ 'body' ] .= "\n				<input type=\"text\" size=\"15\" name=\"id\">";
 
-	$page[ 'body' ] .= "\n				<input type=\"submit\" name=\"Submit\" value=\"Submit\">
+	$page[ 'body' ] .= "\n				<input type=\"submit\" name=\"Submit\" value=\"ძებნა\">
 			</p>\n";
 
 	if( $vulnerabilityFile == 'impossible.php' )
@@ -67,14 +67,6 @@ else {
 $page[ 'body' ] .= "
 		{$html}
 	</div>
-
-	<h2>More Information</h2>
-	<ul>
-		<li>" . dvwaExternalLinkUrlGet( 'https://en.wikipedia.org/wiki/SQL_injection' ) . "</li>
-		<li>" . dvwaExternalLinkUrlGet( 'https://www.netsparker.com/blog/web-security/sql-injection-cheat-sheet/' ) . "</li>
-		<li>" . dvwaExternalLinkUrlGet( 'https://owasp.org/www-community/attacks/SQL_Injection' ) . "</li>
-		<li>" . dvwaExternalLinkUrlGet( 'https://bobby-tables.com/' ) . "</li>
-	</ul>
 </div>\n";
 
 dvwaHtmlEcho( $page );
