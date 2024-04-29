@@ -2,7 +2,7 @@
 
 $page[ 'body' ] .= "
 <div class=\"body_padded\">
-	<h1>Vulnerability: File Inclusion</h1>
+<h1>სერვისი: ფაილები ძიება</h1>
 	<div class=\"vulnerable_code_area\">
 		<h3>File 4 (Hidden)</h3>
 		<hr />
